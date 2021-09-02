@@ -1,0 +1,72 @@
+{% extends 'DCAstrategies/_base.html' %} 
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container" id="first">
+    <div class="container-fluid">
+        <div class = "row">
+            <div class="col-sm-2 col-12">
+                <br/>
+            </div>
+            <div class= "col-sm-8 col-12">
+                <br/>
+                <h3 class="text-center"> Add Your Coinbase Pro API Key</h3>
+                
+            </div>
+            <div class="col-sm-2 col-12">
+                <br/>
+            </div>
+            <hr/>
+            <br/>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-2 col-12">
+
+            </div>
+            <div class="col-sm-8 col-12">
+                <h4 class="justify-content-center">Follow the steps below to add your API key:</h4>
+                <ol type="1">
+                    <li>1. Go to <a href="https://pro.coinbase.com" target=_blank>Coinbase Pro</a> and login with your Coinbase credentials.</li>
+                    <li>2. Click on your profile dropdown menu in the top right corner of the page and select API from the options.</li>
+                    <li>3. Click on New API Key.</li>
+                    <li>4. On this page, make sure that you add a Nickname so you know where you have shared this API Key.</li>
+                    <li>5. Next, select the permissions which you would like to allow DCAPros.io to operate on your behalf. If you want us to handle all of the depositing from your bank account and trading on your behalf, make sure to select all of the permissions. If you only need us to submit trades on your behalf (i.e. you will be supplying money to Coinbase Pro manually), then select just the View and Trade permissions.</li>
+                    <li>6. For the passphrase, you can make your own or stay with what is automatically provided. Don't move on without copying the passphrase and adding it to the Passphrase section below. The passphrase will not be shown by Coinbase Pro again after you move to the next step.</li>
+                    <li>7. Then, click on Create API Key. If you have 2FA with Coinbase Pro, this part will require you to enter a verification code.</li>
+                    <li>8. After you have submitted the verification code, the next page will show you the API Secret. Please copy that string of characters and paste it in the API Secret section below. Don't leave the page on Coinbase Pro until you have copied it over to DCAPros.io. It will not be shown again.</li>
+                    <li>9. Click done and you should be brought back to the API page. Scroll to find the API Key with the nickname you added earlier.</li>
+                    <li>10. Click on the unique string of characters for that API Key and it will be copied. Paste that string in the section called API Key below and if all of the sections are filled out, click the Save API Key button.</li>
+                </ol>
+               
+            </div>
+            
+            <div class="col-sm-2 col-12">
+                
+            </div>
+        </div>
+        <br/>
+        <div class="row justify-content-center">
+            <div class="card shadow" style="width: 50rem;">
+                <div class="container" style="padding-left: 5%; padding-top: 5%; padding-right: 5%; padding-bottom: 5%;">
+                    
+                    <form action="" method="post" class="bootstrap4">
+                        {% csrf_token %}
+                        {{ form.passphrase|as_crispy_field }}
+                        
+                        {{ form.API_secret|as_crispy_field }}
+                        
+                        {{ form.API_key|as_crispy_field }}
+                        
+                        
+                        <button type="submit" class="btn btn-primary">Save API Key</button>
+                        <br/>
+                        
+                    </form>
+                    <p class="text-secondary">*Note that upon clicking Save API Key, DCAPros.io will check the permissions of the provided API Key and make sure everything is setup correctly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

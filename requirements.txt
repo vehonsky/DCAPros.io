@@ -1,0 +1,18 @@
+#run virtualenv
+#install secret key, passwords as env variables that only work when the environment is activated
+
+django
+requests #included in cbpro
+djongo
+django-allauth #for social oauth verifications
+dnspython
+cbpro
+pymongo #to overwrite the pymongo version in cbpro dependencies (this is okay as long as websockets aren't being used)
+django-background-taks
+django-crispy-forms
+-U django-floppyforms
+python-dateutil
+crispy-bootstrap5
+fontawesome-free
+pillow
+yaml

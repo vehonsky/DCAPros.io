@@ -1,0 +1,3 @@
+#Preventing .yaml and .yml
+*.yaml
+*.yml

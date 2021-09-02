@@ -1,0 +1,115 @@
+{% extends 'DCAstrategies/_base.html' %} {% load socialaccount %}
+
+{% block head %}
+<title>DCA Pros | Strategies</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container" id="first"> 
+    <div class="container-fluid">
+        {% if user.is_authenticated %}
+        <div class = "row">
+            <div class="col-sm-2 col-12">
+                <br/>
+            </div>
+            <div class= "col-sm-8 col-12">
+                <br/>
+                <h3 class="text-center"> Your Strategies</h3>
+                
+            </div>
+            <div class="col-sm-2 col-12">
+                <br/>
+                {% if keyExists %}
+                <a href="{% url 'make_strategy' %}" class="btn btn-primary ">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>New Strategy</span>
+                </a>
+                {% endif %}
+            </div>
+            <hr/>
+            <br/>
+        </div>
+        <div class="card-deck flex-wrap">
+            <div class="row justify-content-center">
+                {% if strategies %}
+                    {% for strategy in strategies %}
+                        {% include 'DCAstrategies/_strategy_card.html' with amount=strategy.amount next_execution_date=strategy.next_execution_date crypto=strategy.crypto_product id=strategy.id order_type=strategy.order_type count=strategy.execution_count is_active=strategy.is_active pk=strategy.pk %}
+                    {%  endfor %}
+                {% else %}
+                    {% if keyExists %}
+                        <div class="container" style="text-align: center; padding-top: 10%;">
+                            <h2>You have not made a strategy yet!</h2>
+                            <br/><br/>
+                            <h3>Would you like to make a new strategy?</h3>
+                            <br/>
+                            <a href="{% url 'make_strategy' %}" class="btn btn-primary ">
+                                <i class="bi bi-plus-lg"></i>
+                                <span>New Strategy</span>
+                            </a>
+                        </div>
+                    {% else %}
+                    <div class="container" style="text-align: center; padding-top: 10%;">
+                        <h2>You have not added an API key yet!</h2>
+                        <br/><br/>
+                        <h3>Please add an API Key for your Coinbase Pro account:</h3>
+                        <br/>
+                        <a href="{% url 'add_api_key' %}" class="btn btn-primary ">
+                            <i class="bi bi-plus-lg"></i>
+                            <span>Add API Key</span>
+                        </a>
+                    </div>
+                    {% endif %}
+                {% endif %}     
+            </div>
+        </div>
+        {% else %}
+            <div class="container" style="text-align: center; padding-top: 10%;">
+                <h2>You are not signed into an account!</h2>
+            
+                <br/><br/>
+
+                <h3>Would you like to sign in?</h3>
+                
+                <br/>
+            
+                <a class="btn btn-sm btn-secondary" href="#login_signup_modal" data-bs-toggle="modal" role="button">
+                    <span>Login or Sign Up</span>
+                </a>
+                <div class="modal fade" id="login_signup_modal" tabindex="-1" aria-labelledby="login_signup_modalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="login_signup_modalLabel">Login or Sign Up</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <p>Placeholder</p>
+        
+                            <hr data-content="OR" class="hr-text"/>
+                            
+                            <a href="{% provider_login_url 'google' %}" class="btn btn-secondary">
+                                <i class="bi bi-google"></i>
+                                <span>Login with Google</span>
+                            </a>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-sm btn-primary">Sign Up</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

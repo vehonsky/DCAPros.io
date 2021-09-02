@@ -1,0 +1,108 @@
+{% extends 'DCAstrategies/_base.html' %} 
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container" id="first">
+    <div class="container-fluid">
+        <div class = "row">
+            <div class="col-sm-8 col-12">
+                <br/>
+                <h3> Your API Key</h3>
+            </div>
+            <div class= "col-sm-2 col-12">
+                <br/>
+            </div>
+            <div class="col-sm-2 col-12">
+                <br/>
+                {% if keys == None %}
+                    <a href="{% url 'add_api_key' %}" class="btn btn-primary ">
+                        <i class="bi bi-plus-lg"></i>
+                        <span>Add an API Key</span>
+                    </a>
+                {% endif %}
+            </div>
+            <hr/>
+            <br/>
+        </div>
+
+        <div class="row">
+            {% if keys is not None %}
+                <div class="card shadow" style="width: 25rem;">
+                    <div class="container" style="padding-left: 5px; padding-right: 0px; padding-top: 5px; padding-bottom: 5px;">
+                        <div class="card-title">
+                            
+                        </div>
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    
+                                </div>
+                                <div class="col-md-2 float-right">
+                                    <a href="{% url 'delete_api_key' keys.pk %}" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Delete"><i class="bi bi-x-lg"></i></a>
+                                </div>
+                            </div>
+                            <h5><strong>API Key:</strong></h5>
+                            <p>{{ keys.API_key }}</p>
+                            <p><strong>Scope: </strong> {{ keys.scope }}</p>
+                        </div>
+                    
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <br/>
+        {% if "Transfer" in keys.scope %}
+            <div class = "row">
+                <div class="col-sm-8 col-12">
+                    <br/>
+                    <h3> Preferred Payment Method</h3>
+                </div>
+                <div class= "col-sm-2 col-12">
+                    <br/>
+                </div>
+                <div class="col-sm-2 col-12">
+                    <br/>
+                    {% if not keys.preferred_payment_method_id %}
+                        <a href="{% url 'add_payment_method' %}" class="btn btn-primary">
+                            <!--<i class="bi bi-plus-lg"></i>-->
+                            <span>Choose Account</span>
+                        </a>
+                    {% endif %}
+                </div>
+                <hr/>
+                <br/>
+            </div>
+        {% endif %}
+        <div class="row">
+            {% if keys %}
+                <div class="card shadow" style="width: 25rem;">
+                    <div class="container" style="padding-left: 5px; padding-right: 0px; padding-top: 5px; padding-bottom: 5px;">
+                        <div class="card-title">
+                            
+                        </div>
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    
+                                </div>
+                                <div class="col-md-2 float-right">
+                                    <a href="{% url 'add_payment_method' %}" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="left" title="Edit"><i class="bi bi-gear-fill"></i></a>
+                                </div>
+                            </div>
+                            <h5><strong>Your Preferred Bank Account:</strong></h5>
+                            <p>{{ keys.preferred_payment_method_name }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

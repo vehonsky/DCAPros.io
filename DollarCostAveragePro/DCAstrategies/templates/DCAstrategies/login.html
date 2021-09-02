@@ -1,0 +1,44 @@
+{% extends 'DCAstrategies/_base.html' %} 
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="container-fluid">
+        <div class = "row">
+            <div class="col-sm-2 col-12">
+                <br/>
+            </div>
+            <div class= "col-sm-8 col-12">
+                <br/>
+                <h3 class="text-center"> Looks Like You Aren't Signed In Yet</h3>
+                
+            </div>
+            <div class="col-sm-2 col-12">
+                <br/>
+            </div>
+            
+        </div>
+        <div class="row justify-content-center">
+            <div class="card shadow" style="width: 50rem;">
+                <div class="container" style="padding-left: 5%; padding-top: 5%; padding-right: 5%; padding-bottom: 5%;">
+                    
+                    <form action="" method="post" class="bootstrap4">
+                        {% csrf_token %}
+                        {{ form.passphrase|as_crispy_field }}
+                        <br/>
+                        {{ form.API_secret|as_crispy_field }}
+                        <br/>
+                        {{ form.API_key|as_crispy_field }}
+                        
+                        <br/>
+                        <button type="submit" class="btn btn-primary">Add API Key</button>
+                        <br/>
+                    </form>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
