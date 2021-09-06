@@ -8,9 +8,9 @@ django-allauth #for social oauth verifications
 dnspython
 cbpro
 pymongo #to overwrite the pymongo version in cbpro dependencies (this is okay as long as websockets aren't being used)
-django-background-taks
+django-background-task
 django-crispy-forms
--U django-floppyforms
+django-floppyforms
 python-dateutil
 crispy-bootstrap5
 fontawesome-free
