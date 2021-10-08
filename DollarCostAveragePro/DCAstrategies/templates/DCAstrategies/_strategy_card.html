@@ -11,20 +11,21 @@
                 </div>
                 <div class="col-md-5 float-right">
                     {% if  is_active %}
-                        <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Pause"><i class="bi bi-pause"></i></a>
+                        <a href="#" class="btn btn-md btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Pause"><i class="bi bi-pause"></i></a>
                     {% else %}
-                        <a href="#" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="left" title="Restart"><i class="bi bi-play-fill"></i></a>
+                        <a href="#" class="btn btn-md btn-outline-success" data-toggle="tooltip" data-placement="left" title="Start"><i class="bi bi-play-fill"></i></a>
                     {% endif %}
-                    <a href="{% url 'edit_strategy' pk %}" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="bi bi-gear-fill"></i></a>
-                    <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Delete"><i class="bi bi-x-lg"></i></a>
+                    <a href="{% url 'edit_strategy' pk %}" class="btn btn-md btn-outline-secondary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="bi bi-gear-fill"></i></a>
+                    <a href="#" class="btn btn-md btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Delete"><i class="bi bi-x-lg"></i></a>
                 </div>
             </div>
-            <h5><strong>{{ crypto }}</strong></h5>
-            <h5><strong>{{ order_type }}:</strong></h5>
-            <p>{{ amount }}</p>
-            <p><strong>Count: </strong> {{ count }}</p>
-            <h6>Next execution is: {{ next_execution_date }}</h6>
-            <p>{{ next_execution_date }}</p>
+            <br/>
+            <h5><strong>Cryptocurrency: </strong>{{ crypto }}</h5>
+            <h5><strong>Order Type: </strong> {{ order_type }}</h5>
+            <h5><strong>Amount: </strong>{{ amount }} {{currency}}</h5>
+            <h5><strong>Execution Count: </strong> {{ count }}</h5>
+            <h5><strong>Next execution is: </strong> </h5>
+            <p>{{ next_execution_date }} UTC</p>
         </div>
     </div>
 </div>

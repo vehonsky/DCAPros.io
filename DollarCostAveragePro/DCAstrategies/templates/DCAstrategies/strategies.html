@@ -36,7 +36,7 @@
             <div class="row justify-content-center">
                 {% if strategies %}
                     {% for strategy in strategies %}
-                        {% include 'DCAstrategies/_strategy_card.html' with amount=strategy.amount next_execution_date=strategy.next_execution_date crypto=strategy.crypto_product id=strategy.id order_type=strategy.order_type count=strategy.execution_count is_active=strategy.is_active pk=strategy.pk %}
+                        {% include 'DCAstrategies/_strategy_card.html' with amount=strategy.amount next_execution_date=strategy.next_execution_date crypto=strategy.crypto_product id=strategy.id order_type=strategy.order_type count=strategy.execution_count is_active=strategy.is_active pk=strategy.pk currency=strategy.quote_currency %}
                     {%  endfor %}
                 {% else %}
                     {% if keyExists %}
