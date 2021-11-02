@@ -69,7 +69,7 @@ class StrategyForm(ModelForm):
             'crypto_product',
             Row(
                 Column('order_type', css_class='form-group col-md-6'),
-                Column('percent_picker', css_class='form-group col-md-6 '),
+                Column('percent_picker', css_class='form-group col-md-6'),
             ),
             Row(
                 Column('amount', css_class='form-group col-md-4'),
@@ -98,7 +98,7 @@ class StrategyForm(ModelForm):
         )
     
     percent_picker = forms.IntegerField(
-        widget = RangeInput(attrs={'min': '0', 'max': '10', 'step': 1,},), #'disabled': 'True'},),
+        widget = RangeInput(attrs={'min': '0', 'max': '10', 'step': 1,}), #'disabled' : True}, ), #'disabled': 'True'},),
         label='<strong>Percent Below Market Price:</strong>',
         )
 
