@@ -11,12 +11,12 @@
                 </div>
                 <div class="col-md-5 float-right">
                     {% if  is_active %}
-                        <a href="#" class="btn btn-md btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Pause"><i class="bi bi-pause"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Pause"><i class="fa fa-pause"></i></a>
                     {% else %}
-                        <a href="#" class="btn btn-md btn-outline-success" data-toggle="tooltip" data-placement="left" title="Start"><i class="bi bi-play-fill"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="left" title="Start"><i class="fa fa-play"></i></a>
                     {% endif %}
-                    <a href="{% url 'edit_strategy' pk %}" class="btn btn-md btn-outline-secondary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="bi bi-gear-fill"></i></a>
-                    <a href="#" class="btn btn-md btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Delete"><i class="bi bi-x-lg"></i></a>
+                    <a href="{% url 'edit_strategy' pk %}" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-cog"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Delete"><i class="fa fa-times"></i></a>
                 </div>
             </div>
             <br/>
