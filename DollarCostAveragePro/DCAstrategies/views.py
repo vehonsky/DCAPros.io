@@ -136,6 +136,7 @@ def pauseStrategy(request, pk):
     strategy = get_object_or_404(Strategy, pk=pk)
     if request.method == 'POST':
         setattr(strategy, 'is_active', False)
+        strategy.save()
         return HttpResponseRedirect('/strategies')
     
     return render(request, 'DCAstrategies/pause_strategy.html', context)
@@ -147,6 +148,7 @@ def restartStrategy(request, pk):
     strategy = get_object_or_404(Strategy, pk=pk)
     if request.method == 'POST':
         setattr(strategy, 'is_active', True)
+        strategy.save()
         return HttpResponseRedirect('/strategies')
     
     return render(request, 'DCAstrategies/restart_strategy.html', context)
