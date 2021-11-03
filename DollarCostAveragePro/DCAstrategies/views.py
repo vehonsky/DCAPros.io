@@ -120,12 +120,36 @@ def editStrategy(request, pk):
 
 @login_required
 def deleteStrategy(request, pk):
+    context = {}
+
     strategy = get_object_or_404(Strategy, pk=pk)
     if request.method == 'POST':
         strategy.delete()
         return HttpResponseRedirect('/strategies')
     
-    return render()
+    return render(request, 'DCAstrategies/delete_API_key.html', context)
+
+@login_required
+def pauseStrategy(request, pk):
+    context = {}
+
+    strategy = get_object_or_404(Strategy, pk=pk)
+    if request.method == 'POST':
+        setattr(strategy, 'is_active', False)
+        return HttpResponseRedirect('/strategies')
+    
+    return render(request, 'DCAstrategies/pause_strategy.html', context)
+
+@login_required
+def restartStrategy(request, pk):
+    context = {}
+
+    strategy = get_object_or_404(Strategy, pk=pk)
+    if request.method == 'POST':
+        setattr(strategy, 'is_active', True)
+        return HttpResponseRedirect('/strategies')
+    
+    return render(request, 'DCAstrategies/restart_strategy.html', context)
 
 @login_required
 def APIKey(request):
