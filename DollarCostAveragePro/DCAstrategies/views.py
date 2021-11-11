@@ -136,6 +136,8 @@ def pauseStrategy(request, pk):
     strategy = get_object_or_404(Strategy, pk=pk)
     if request.method == 'POST':
         setattr(strategy, 'is_active', False)
+        amount = Decimal(str(strategy.amount))
+        setattr(strategy, 'amount', amount) #Have to do this for the Decimal 128 problem with Mongo
         strategy.save()
         return HttpResponseRedirect('/strategies')
     
@@ -148,6 +150,8 @@ def restartStrategy(request, pk):
     strategy = get_object_or_404(Strategy, pk=pk)
     if request.method == 'POST':
         setattr(strategy, 'is_active', True)
+        amount = Decimal(str(strategy.amount))
+        setattr(strategy, 'amount', amount) #Have to do this for the Decimal 128 problem with Mongo
         strategy.save()
         return HttpResponseRedirect('/strategies')
     
