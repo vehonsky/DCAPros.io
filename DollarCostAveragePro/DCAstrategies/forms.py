@@ -29,12 +29,14 @@ def get_order_type_choices_form(user_id):
         user_profile = Profile.objects.get(user=user_id)
     except Profile.DoesNotExist:
         ORDER_CHOICES.add(("market", "Market"))
+        ORDER_CHOICES.add(("test", "Test"))
         return ORDER_CHOICES
 
     if user_profile.is_pro:
         ORDER_CHOICES.add(("limit", "Limit"))
         ORDER_CHOICES.add(("ladder", "Ladder"))
 
+    ORDER_CHOICES.add(("test", "Test"))
     return ORDER_CHOICES
 
 
@@ -98,7 +100,7 @@ class StrategyForm(ModelForm):
         )
     
     percent_picker = forms.IntegerField(
-        widget = RangeInput(attrs={'min': '0', 'max': '10', 'step': 1,}), #'disabled' : True}, ), #'disabled': 'True'},),
+        widget = RangeInput(attrs={'min': '0', 'max': '10', 'step': 1,'disabled' : "disabled"}, ), #'disabled': 'True'},),
         label='<strong>Percent Below Market Price:</strong>',
         )
 
