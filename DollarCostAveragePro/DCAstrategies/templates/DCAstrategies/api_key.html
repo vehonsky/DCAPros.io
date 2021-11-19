@@ -22,7 +22,7 @@
                 <br/>
                 {% if keys == None %}
                     <a href="{% url 'add_api_key' %}" class="btn btn-primary ">
-                        <i class="bi bi-plus-lg"></i>
+                        <i class="fa fa-plus"></i>
                         <span>Add an API Key</span>
                     </a>
                 {% endif %}
@@ -44,7 +44,7 @@
                                     
                                 </div>
                                 <div class="col-md-2 float-right">
-                                    <a href="{% url 'delete_api_key' keys.pk %}" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Delete"><i class="bi bi-x-lg"></i></a>
+                                    <a href="{% url 'delete_api_key' keys.pk %}" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Delete"><i class="fa fa-times"></i></a>
                                 </div>
                             </div>
                             <h5><strong>API Key:</strong></h5>
@@ -92,7 +92,7 @@
                                     
                                 </div>
                                 <div class="col-md-2 float-right">
-                                    <a href="{% url 'add_payment_method' %}" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="left" title="Edit"><i class="bi bi-gear-fill"></i></a>
+                                    <a href="{% url 'add_payment_method' %}" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-cog"></i></a>
                                 </div>
                             </div>
                             <h5><strong>Your Preferred Bank Account:</strong></h5>

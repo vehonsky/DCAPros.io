@@ -127,7 +127,7 @@ def deleteStrategy(request, pk):
         strategy.delete()
         return HttpResponseRedirect('/strategies')
     
-    return render(request, 'DCAstrategies/delete_API_key.html', context)
+    return render(request, 'DCAstrategies/delete_strategy.html', context)
 
 @login_required
 def pauseStrategy(request, pk):
