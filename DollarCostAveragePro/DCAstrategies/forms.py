@@ -63,6 +63,12 @@ class StrategyForm(ModelForm):
                 label='<strong>Choose the Type of Order</strong>',
                 help_text="Orders reference the market price at the time of execution.",
                 )
+        
+        self.fields['percent_picker'] = forms.IntegerField(
+                widget = RangeInput(attrs={'min': '0', 'max': '10', 'step': 1,'disabled' : "disabled"},),
+                label='<strong>Percent Below Market Price:</strong>',
+                )
+        self.fields['percent_picker'].required = False
 
         self.helper = FormHelper()
         self.helper.form_class = 'bootstrap5'
