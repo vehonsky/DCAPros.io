@@ -1,4 +1,4 @@
- asgiref==3.4.1
+asgiref==3.4.1
 cbpro==1.1.4
 certifi==2021.5.30
 cffi==1.14.6
