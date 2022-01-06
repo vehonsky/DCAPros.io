@@ -30,7 +30,7 @@ SECRET_KEY = credentials['DJANGO']['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.dcapros.io','dcapros.io']
+ALLOWED_HOSTS = ['www.dcapros.io','dcapros.io'] #also add the IP address of the virtual machine
 
 
 # Application definition
