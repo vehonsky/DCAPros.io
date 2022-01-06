@@ -374,9 +374,6 @@ def updateExecutionCountsandFees():
     start = datetime.datetime.now()
     t_start = time.time()
     print('----------- Start of Fees and Execution Count Check ----------- Time: ' + start.strftime("%d-%b-%Y (%H:%M:%S.%f)"))
-    now = datetime.datetime.now()
-    print('The current time is: ' + str(now))
-    
     print('Grabbing all strategies...')
     #Task to update all the strategies execution counts for successful orders made in total for each
     allStrats = Strategy.objects.all()
