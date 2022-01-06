@@ -14,7 +14,7 @@ from pathlib import Path
 import urllib, os, sys, yaml
 import django
 
-with open('../credentials.yaml', 'r') as file:
+with open('../credentials.yaml', 'r') as file: #needs to be real path on virtual machine for apache2 to run
     credentials = yaml.safe_load(file)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
