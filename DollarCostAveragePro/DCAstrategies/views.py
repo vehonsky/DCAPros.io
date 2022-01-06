@@ -18,12 +18,12 @@ def home(request):
     totalStrategies = len(activeStrategies)
     fulfilledOrders = Orders.objects.filter(is_settled__in=[True]).filter(fees_saved__isnull=False)
     totalOrders = len(fulfilledOrders)
-    feesSaved = Decimal(0)
+    totalFeesSaved = Decimal(0)
     for order in fulfilledOrders:
         orderFeesSaved = Decimal(str(order.fees_saved))
-        feesSaved += orderFeesSaved
+        totalFeesSaved += orderFeesSaved
 
-    feesSaved = Decimal(round(feesSaved, 2))
+    totalFeesSaved = Decimal(round(totalFeesSaved, 2))
     user = request.user
     throwaway = Keys.objects.filter(user=user)
     if throwaway:
@@ -47,7 +47,7 @@ def home(request):
         "bankKnown": bankKnown,
         "totalStrategies": totalStrategies,
         "totalOrders": totalOrders,
-        "feesSaved": feesSaved,
+        "totalFeesSaved": totalFeesSaved,
     }
     return render(request, 'DCAstrategies/home.html', context)
 
