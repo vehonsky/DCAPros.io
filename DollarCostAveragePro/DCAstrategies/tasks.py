@@ -9,8 +9,9 @@ from dateutil import parser
 
 @background(schedule=10, queue='crypto_product_refresh', remove_existing_tasks=True)
 def get_CB_crypto_products():
+    start = datetime.datetime.now()
     t_start = time.time()
-    print('----------- Start of Crypto Product Check -----------')
+    print('----------- Start of Crypto Product Check ----------- Time: ' + start.strftime("%d-%b-%Y (%H:%M:%S.%f)"))
     #First make a public client connection
     pub_client = cbpro.PublicClient()
     print("Public Connection Made")
@@ -35,8 +36,9 @@ def get_CB_crypto_products():
     
 @background(schedule=5, queue='promote_strategy', remove_existing_tasks=True)
 def get_strategies_for_execution():
+    start = datetime.datetime.now()
     t_start = time.time()
-    print('----------- Start of Strategy Promotion -----------')
+    print('----------- Start of Strategy Promotion ----------- Time: ' + start.strftime("%d-%b-%Y (%H:%M:%S.%f)"))
     print('Finding all strategies that need to be executed!')
     now = datetime.datetime.now()
     print('The current time is: ' + str(now))
@@ -64,8 +66,9 @@ def get_strategies_for_execution():
 
 @background(schedule=10, queue='execute_strategy', remove_existing_tasks=True)
 def execute_strategies(strategy_id):
+    start = datetime.datetime.now()
     t_start = time.time()
-    print('----------- Start of Strategy Execution -----------')
+    print('----------- Start of Strategy Execution ----------- Time: ' + start.strftime("%d-%b-%Y (%H:%M:%S.%f)"))
     error_this_time = False
 
     #Get promoted strategies
@@ -264,8 +267,9 @@ def execute_strategies(strategy_id):
 
 @background(schedule=10, queue='check_orders', remove_existing_tasks=True)
 def checkOrders():
+    start = datetime.datetime.now()
     t_start = time.time()
-    print('----------- Start of Order Check -----------')
+    print('----------- Start of Order Check ----------- Time: ' + start.strftime("%d-%b-%Y (%H:%M:%S.%f)"))
 
     #Get all orders that are still marked as unsettled (these are the only ones needed to be updated potentially), note it can give 404 response if the order was cancelled
     ordersToCheck = Orders.objects.filter(is_settled__in=[False])
@@ -367,8 +371,9 @@ def get_regular_fees(trade_amount: Decimal):
 
 @background(schedule=10, queue='execution_count_and_fees', remove_existing_tasks=True)
 def updateExecutionCountsandFees():
+    start = datetime.datetime.now()
     t_start = time.time()
-    print('----------- Start of Fees and Execution Count Check -----------')
+    print('----------- Start of Fees and Execution Count Check ----------- Time: ' + start.strftime("%d-%b-%Y (%H:%M:%S.%f)"))
     now = datetime.datetime.now()
     print('The current time is: ' + str(now))
     
