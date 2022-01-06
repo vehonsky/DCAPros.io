@@ -43,15 +43,27 @@
           <h2 class="neonText">${{ feesSaved }}</h2>
         </div>
       </div>
+      <br/>
       <div class="row justify-content-center">
-        <div class="col">
 
-        </div>
         <div class="col">
-          <a class="btn-round btn-primary">Get Started</a>
-        </div>
-        <div class="col">
-
+          {% if user.is_authenticated  %}
+            {% if keyExists %}
+              {% if transferPrivs %}
+                {% if bankKnown %}
+                  <a href="{% url 'strategies' %}" class="btn-round btn-primary">Get Started</a>
+                {% else %}
+                  <a href="{% url 'add_payment_method' %}" class="btn-round btn-primary">Get Started</a>
+              {% else %}
+                <a href="{% url 'strategies' %}" class="btn-round btn-primary">Get Started</a>
+              {% endif %}
+              {% endif %}
+            {% else %}
+              <a href="{% url 'add_api_key' %}" class="btn-round btn-primary">Get Started</a>
+            {% endif %}
+          {% else %}
+            <a href="/" class="btn-round btn-primary">Get Started</a>
+          {% endif %}
         </div>
           
       </div>

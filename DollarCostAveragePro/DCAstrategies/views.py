@@ -23,10 +23,28 @@ def home(request):
         orderFeesSaved = Decimal(str(order.fees_saved))
         feesSaved += orderFeesSaved
 
-    feesSaved = Decimal(round(feesSaved, 4))
+    feesSaved = Decimal(round(feesSaved, 2))
     user = request.user
+    throwaway = Keys.objects.filter(user=user)
+    if throwaway:
+        APIdoesExist = True
+        scope = throwaway.scope
+        if "Transfer" in scope:
+            transferPrivs = True
+        else:
+            transferPrivs = False
+        preferredBankAccount = throwaway.preferred_payment_method_id
+        if preferredBankAccount:
+            bankKnown = True
+        else:
+            bankKnown = False
+    else:
+        APIdoesExist = False
     context = {
         "user": user,
+        "keyExists": APIdoesExist,
+        "transferPrivs": transferPrivs,
+        "bankKnown": bankKnown,
         "totalStrategies": totalStrategies,
         "totalOrders": totalOrders,
         "feesSaved": feesSaved,
@@ -40,13 +58,13 @@ def strategies(request):
         allStrats = Strategy.objects.filter(user=user)
         throwaway = Keys.objects.filter(user=user)
         if throwaway:
-            doesExist = True
+            APIdoesExist = True
         else:
-            doesExist = False
+            APIdoesExist = False
         context = {
             "strategies": allStrats,
             "user": user,
-            "keyExists": doesExist,
+            "keyExists": APIdoesExist,
         }
     else:
         context = {
