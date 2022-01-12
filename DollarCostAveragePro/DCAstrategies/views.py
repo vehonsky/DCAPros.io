@@ -32,7 +32,6 @@ def home(request):
         throwaway = False
     if throwaway:
         APIdoesExist = True
-        print(throwaway)
         scope = throwaway[0].scope
         
         if "Transfer" in scope:
