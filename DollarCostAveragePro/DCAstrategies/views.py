@@ -22,24 +22,32 @@ def home(request):
     for order in fulfilledOrders:
         orderFeesSaved = Decimal(str(order.fees_saved))
         totalFeesSaved += orderFeesSaved
-
     totalFeesSaved = Decimal(round(totalFeesSaved, 2))
+
+    
     user = request.user
-    throwaway = Keys.objects.filter(user=user)
+    if user.is_authenticated:
+        throwaway = Keys.objects.filter(user=user)
+    else:
+        throwaway = False
     if throwaway:
         APIdoesExist = True
-        scope = throwaway.scope
+        print(throwaway)
+        scope = throwaway[0].scope
+        
         if "Transfer" in scope:
             transferPrivs = True
         else:
             transferPrivs = False
-        preferredBankAccount = throwaway.preferred_payment_method_id
+        preferredBankAccount = throwaway[0].preferred_payment_method_id
         if preferredBankAccount:
             bankKnown = True
         else:
             bankKnown = False
     else:
         APIdoesExist = False
+        transferPrivs = False
+        bankKnown = False
     context = {
         "user": user,
         "keyExists": APIdoesExist,

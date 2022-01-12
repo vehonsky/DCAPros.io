@@ -54,9 +54,9 @@
                   <a href="{% url 'strategies' %}" class="btn-round btn-primary">Get Started</a>
                 {% else %}
                   <a href="{% url 'add_payment_method' %}" class="btn-round btn-primary">Get Started</a>
+                {% endif %}
               {% else %}
                 <a href="{% url 'strategies' %}" class="btn-round btn-primary">Get Started</a>
-              {% endif %}
               {% endif %}
             {% else %}
               <a href="{% url 'add_api_key' %}" class="btn-round btn-primary">Get Started</a>
