@@ -351,6 +351,7 @@ def addPaymentMethod(request):
 
 @login_required
 def deleteAccountConfirmation(request):
+    pass
 
 
 @login_required
