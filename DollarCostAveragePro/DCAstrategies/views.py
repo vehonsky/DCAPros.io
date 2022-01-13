@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect, response
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 from django.shortcuts import get_object_or_404, redirect, render
 from requests import auth
 from .models import Strategy, Keys, Orders
@@ -347,3 +348,18 @@ def addPaymentMethod(request):
         form = PaymentMethodForm(request=request, user=request.user)
 
     return render(request, 'DCAstrategies/add_payment_method.html', {'form': form})
+
+@login_required
+def deleteAccountConfirmation(request):
+
+
+@login_required
+@require_http_method(['POST'])
+def removeAccount(request):
+    user_pk = request.user.pk
+    auth_logout(request)
+    User = get_user_model()
+    User.objects.filter(pk=user_pk).delete()
+    # …
+    # return HTTP response
+    return HttpResponseRedirect('/')
