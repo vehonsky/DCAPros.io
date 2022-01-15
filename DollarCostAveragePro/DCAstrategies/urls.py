@@ -15,6 +15,6 @@ urlpatterns = [
     path('delete_api_key/<uuid:pk>', views.deleteAPIKey, name='delete_api_key'),
     path('api_key/', views.APIKey, name='api_key'),
     path('add_payment_method/', views.addPaymentMethod, name='add_payment_method'),
-    path('delete_account_confirmation', views.deleteAccountConfirmation, name='delete_account_confirmation'),
-    path('remove_account/', views.removeAccount, name='remove_account'),
+    path('delete_account/', views.deleteAccount, name='delete_account'),
+    path('login/', views.login, name='login'),
 ]

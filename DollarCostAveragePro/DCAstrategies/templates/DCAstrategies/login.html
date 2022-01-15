@@ -2,40 +2,39 @@
 {% load socialaccount %}
 {% load crispy_forms_tags %}
 
+{% block head %}
+<title>DCA Pros | Login</title>
+{% endblock %}
+
 {% block content %}
-<div class="container">
+<div class="container" class="first">
     <div class="container-fluid">
-        <div class = "row">
+        <div class="row">
             <div class="col-sm-2 col-12">
-                <br/>
+                <br />
             </div>
-            <div class= "col-sm-8 col-12">
-                <br/>
-                <h3 class="text-center"> Looks Like You Aren't Signed In Yet</h3>
+            <div class="col-sm-8 col-12">
+                <br />
                 
+        
             </div>
             <div class="col-sm-2 col-12">
-                <br/>
+                <br />
             </div>
-            
+            <hr />
+            <br />
+            <br />
+            <br />
         </div>
         <div class="row justify-content-center">
             <div class="card shadow" style="width: 50rem;">
+                <br/>
+                <h3 class="text-center">Login/Sign Up</h3>
                 <div class="container" style="padding-left: 5%; padding-top: 5%; padding-right: 5%; padding-bottom: 5%;">
-                    
-                    <form action="" method="post" class="bootstrap4">
-                        {% csrf_token %}
-                        {{ form.passphrase|as_crispy_field }}
-                        <br/>
-                        {{ form.API_secret|as_crispy_field }}
-                        <br/>
-                        {{ form.API_key|as_crispy_field }}
-                        
-                        <br/>
-                        <button type="submit" class="btn btn-primary">Add API Key</button>
-                        <br/>
-                    </form>
-                   
+                    <a href="{% provider_login_url 'google' %}" class="btn btn-sm btn-secondary">
+                        <i class="fab fa-google" aria-hidden="true"></i>
+                        <span>Login with Google</span>
+                    </a>
                 </div>
             </div>
         </div>

@@ -22,11 +22,12 @@
             <hr />
             <br />
         </div>
-        <form method="POST" action="{% url 'name-of-delete-view' %}">
+        <form method="POST" action="{% url 'delete_account' %}">
             <!-- Security token by Django -->
             {% csrf_token %}
             Are you sure you want to delete your account? This will remove all data associated with your profile and your strategies will no longer execute.
-            <button type="submit">Delete Account</button>
+            <br/>
+            <button class="btn btn-md btn-primary" type="submit">Delete Account</button>
             <a href="/">Cancel </a>
         </form>
     </div>

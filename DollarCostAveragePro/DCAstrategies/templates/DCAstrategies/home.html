@@ -62,7 +62,7 @@
               <a href="{% url 'add_api_key' %}" class="btn-round btn-primary">Get Started</a>
             {% endif %}
           {% else %}
-            <a href="/" class="btn-round btn-primary">Get Started</a>
+            <a href="{% url 'login' %}" class="btn-round btn-primary">Get Started</a>
           {% endif %}
         </div>
           

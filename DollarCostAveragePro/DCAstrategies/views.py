@@ -10,7 +10,7 @@ from .forms import APIKeyForm
 from .forms import PaymentMethodForm
 import cbpro
 from .tasks import execute_strategies
-from decimal import Decimal
+from decimal import Context, Decimal
 
 
 # Create your views here.
@@ -58,6 +58,14 @@ def home(request):
         "totalFeesSaved": totalFeesSaved,
     }
     return render(request, 'DCAstrategies/home.html', context)
+
+def login(request):
+    context = {}
+    user = request.user
+    if user.is_authenticated:
+        return HttpResponseRedirect('/')
+
+    return render(request, 'DCAstrategies/login.html', context)
 
 @login_required
 def strategies(request):
@@ -350,17 +358,14 @@ def addPaymentMethod(request):
     return render(request, 'DCAstrategies/add_payment_method.html', {'form': form})
 
 @login_required
-def deleteAccountConfirmation(request):
-    pass
+def deleteAccount(request):
+    context = {}
+    pk = request.user.pk
 
-
-@login_required
-@require_http_method(['POST'])
-def removeAccount(request):
-    user_pk = request.user.pk
-    auth_logout(request)
-    User = get_user_model()
-    User.objects.filter(pk=user_pk).delete()
-    # …
-    # return HTTP response
-    return HttpResponseRedirect('/')
+    if request.method == 'POST':
+        auth_logout(request)
+        User = get_user_model()
+        User.objects.filter(pk=pk).delete()
+        return HttpResponseRedirect('/')
+    
+    return render(request, 'DCAstrategies/delete_account.html', context)
