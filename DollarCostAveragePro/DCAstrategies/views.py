@@ -1,5 +1,7 @@
 from django.http import HttpResponseRedirect, response
 from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.auth import logout as auth_logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import get_object_or_404, redirect, render
@@ -360,12 +362,12 @@ def addPaymentMethod(request):
 @login_required
 def deleteAccount(request):
     context = {}
-    pk = request.user.pk
+    user_pk = request.user.pk
 
     if request.method == 'POST':
         auth_logout(request)
         User = get_user_model()
-        User.objects.filter(pk=pk).delete()
+        User.objects.filter(pk=user_pk).delete()
         return HttpResponseRedirect('/')
     
     return render(request, 'DCAstrategies/delete_account.html', context)
