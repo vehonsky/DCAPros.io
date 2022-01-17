@@ -10,6 +10,7 @@ from .models import Strategy, Keys, Orders
 from .forms import StrategyForm
 from .forms import APIKeyForm
 from .forms import PaymentMethodForm
+from .functions import encrypt_before_storing, decrypt_before_use
 import cbpro
 from .tasks import execute_strategies
 from decimal import Context, Decimal
@@ -271,9 +272,11 @@ def addAPIKey(request):
             valid, scope = checkAPIKey(API_key=API_key, API_secret=API_secret, passphrase=passphrase)
             if valid:
                 newKey, exists = Keys.objects.get_or_create(user=user)
+                enc_API_secret = encrypt_before_storing(API_secret)
+                enc_passphrase = encrypt_before_storing(passphrase)
                 setattr(newKey, 'API_key', API_key)
-                setattr(newKey, 'API_secret', API_secret)
-                setattr(newKey, 'passphrase', passphrase)
+                setattr(newKey, 'API_secret', enc_API_secret)
+                setattr(newKey, 'passphrase', enc_passphrase)
                 setattr(newKey, 'scope', scope)
                 newKey.save()
                 return HttpResponseRedirect('/api_key/') 
@@ -303,9 +306,11 @@ def editAPIKey(request, pk):
             valid, scope = checkAPIKey(API_key=API_key, API_secret=API_secret, passphrase=passphrase)
             if valid:
                 newKey, exists = Keys.objects.get_or_create(user=user)
+                enc_API_secret = encrypt_before_storing(API_secret)
+                enc_passphrase = encrypt_before_storing(passphrase)
                 setattr(newKey, 'API_key', API_key)
-                setattr(newKey, 'API_secret', API_secret)
-                setattr(newKey, 'passphrase', passphrase)
+                setattr(newKey, 'API_secret', enc_API_secret)
+                setattr(newKey, 'passphrase', enc_passphrase)
                 setattr(newKey, 'scope', scope)
                 newKey.save()
                 return HttpResponseRedirect('/api_key/') 
@@ -343,7 +348,7 @@ def addPaymentMethod(request):
             payMethod = form.cleaned_data['preferred_payment_method']
             #add the new payment method to the existing key object
             setattr(keyObject, 'preferred_payment_method_id', payMethod)
-            auth_client = cbpro.AuthenticatedClient(keyObject.API_key, keyObject.API_secret, keyObject.passphrase)
+            auth_client = cbpro.AuthenticatedClient(keyObject.API_key, decrypt_before_use(keyObject.API_secret), decrypt_before_use(keyObject.passphrase))
             accounts = auth_client.get_payment_methods()
             for num in accounts:
                 if num['id'] == payMethod:

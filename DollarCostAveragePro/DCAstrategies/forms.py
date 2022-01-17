@@ -6,6 +6,7 @@ from floppyforms.widgets import Input, RangeInput, Select
 import requests
 from .models import ORDER_CHOICES, Strategy
 from .models import Keys, Orders, CryptoProducts, Profile
+from .functions import decrypt_before_use, encrypt_before_storing
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 import cbpro
@@ -151,9 +152,11 @@ class PaymentMethodForm(forms.Form):
         METHOD_CHOICES = set()
         try:
             userKey = Keys.objects.get(user=self.user) #can use get instead of filter because it is 1:1 field relation
+            dec_secret = decrypt_before_use(userKey.API_secret)
+            dec_passphrase = decrypt_before_use(userKey.passphrase)
 
             #Make an authenticated client for this user to grab the payment methods available to them
-            auth_client = cbpro.AuthenticatedClient(userKey.API_key, userKey.API_secret, userKey.passphrase)
+            auth_client = cbpro.AuthenticatedClient(userKey.API_key, dec_secret, dec_passphrase)
             
             #Grab the user's payment methods attached to their CB Pro account
             payMethods = auth_client.get_payment_methods()

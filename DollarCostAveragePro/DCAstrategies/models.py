@@ -61,8 +61,8 @@ class Keys(models.Model):
         on_delete = models.CASCADE,
     )
 
-    API_secret = models.CharField(max_length=100)
-    API_key = models.CharField(max_length=100)
+    API_secret = models.CharField(max_length=350)
+    API_key = models.CharField(max_length=350)
     passphrase = models.CharField(max_length=100)
     scope = models.CharField(max_length=100, default="View; Transfer; Trade;")
     preferred_payment_method_id = models.CharField(max_length=100, blank=True, null=True, default="")

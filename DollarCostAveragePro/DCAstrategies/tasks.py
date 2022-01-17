@@ -4,6 +4,7 @@ from .models import CryptoProducts, Strategy, Keys, Orders
 from django.db.models import Q
 from decimal import Decimal
 from dateutil import parser
+from .functions import decrypt_before_use, encrypt_before_storing
 
 #Below are the background tasks that will be run by the server
 
@@ -112,7 +113,9 @@ def execute_strategies(strategy_id):
         hasTransferPriv = 'Transfer' in apiKey.scope
         
         #Make the auth client for the rest of the time
-        auth_client = cbpro.AuthenticatedClient(key=apiKey.API_key, b64secret=apiKey.API_secret, passphrase=apiKey.passphrase)
+        dec_secret = decrypt_before_use(apiKey.API_secret)
+        dec_passphrase = decrypt_before_use(apiKey.passphrase)
+        auth_client = cbpro.AuthenticatedClient(key=apiKey.API_key, b64secret=dec_secret, passphrase=dec_passphrase)
 
         #If API key has transfer scope, then do deposit of amount from strategy using preferred payment method
         if hasTransferPriv:
@@ -294,7 +297,9 @@ def checkOrders():
             #error_this_time = True
             continue
 
-        auth_client = cbpro.AuthenticatedClient(key=apiKey.API_key, b64secret=apiKey.API_secret, passphrase=apiKey.passphrase)
+        dec_secret = decrypt_before_use(apiKey.API_secret)
+        dec_passphrase = decrypt_before_use(apiKey.passphrase)
+        auth_client = cbpro.AuthenticatedClient(key=apiKey.API_key, b64secret=dec_secret, passphrase=dec_passphrase)
 
         order_response = auth_client.get_order(order.coinbase_id)
         print(order_response)
