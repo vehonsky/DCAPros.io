@@ -166,7 +166,7 @@ class Strategy(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     #Local currency of the user as selected by them from currency_choices
-    quote_currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default = "USD")
+    quote_currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES, default = "USD")
 
     #Amount of local currency to be used in the strategy, default is 10.00
     amount = models.DecimalField(max_digits=10, 
