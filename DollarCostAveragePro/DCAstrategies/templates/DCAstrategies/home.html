@@ -12,14 +12,14 @@
     <div class="container" id="first" style="text-align: center;">
 
       {% if user.is_authenticated %}
-        <h1 class="text-light">Welcome, {{ user.username|title }}, to DCAPros.io!</h1>
+        <h1>Welcome, {{ user.username|title }}, to DCAPros.io!</h1>
       {% else %}
-        <h1 class="text-light">Welcome to DCAPros.io!</h1>
+        <h1>Welcome to DCAPros.io!</h1>
       {% endif %}
       <br /><br />
-      <h6 class="text-light"><strong>At DCAPros.io we aim to provide our users with the best Dollar Cost Averaging strategies for Coinbase Pro. Our users save the most money by taking advantage of the lower fees for buying cryptocurrencies on the Coinbase Pro exchange vs. the original Coinbase. Our sole aim is to help other crypto fanatics to achieve their DCA strategy dreams, all while saving them money!</strong></h6>
+      <h6><strong>At DCAPros.io we aim to provide our users with the best Dollar Cost Averaging strategies for Coinbase Pro. Our users save the most money by taking advantage of the lower fees for buying cryptocurrencies on the Coinbase Pro exchange vs. the original Coinbase. Our sole aim is to help other crypto fanatics to achieve their DCA strategy dreams, all while saving them money!</strong></h6>
       <br /><br />
-      <h4 class="neonText"><strong>At this time we have facilitated:</strong></h4>
+      <h4><strong>At this time we have facilitated:</strong></h4>
       <br />
       <div class="row">
           <div class="col">
@@ -34,13 +34,13 @@
       </div>
       <div class="row">
         <div class="col">
-          <h2 class="neonText">{{ totalStrategies }}</h2>
+          <h2>{{ totalStrategies }}</h2>
         </div>
         <div class="col">
-          <h2 class="neonText">{{ totalOrders }}</h2>
+          <h2>{{ totalOrders }}</h2>
         </div>
         <div class="col">
-          <h2 class="neonText">${{ totalFeesSaved }}</h2>
+          <h2>${{ totalFeesSaved }}</h2>
         </div>
       </div>
       <br/>
