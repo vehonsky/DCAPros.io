@@ -34,7 +34,6 @@ def encrypt_before_storing(string_to_encrypt):
     encrypted = encrypted.decode("utf8")
     return encrypted
     
-
 def decrypt_before_use(encrypted_string):
     
     with open('/Users/jvehonsk/Documents/GitHub/DCAPros.io/credentials.yaml', 'r') as file: #needs to be real path on virtual machine for apache2 to run
