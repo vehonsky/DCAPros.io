@@ -1,0 +1,6 @@
+#to be put into /var/www/html/ as is
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
