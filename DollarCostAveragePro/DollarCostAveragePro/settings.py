@@ -31,7 +31,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['www.dcapros.io','dcapros.io','127.0.0.1'] #also add the IP address of the virtual machine
 
-
 # Application definition
 
 
