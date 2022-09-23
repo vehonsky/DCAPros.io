@@ -1,6 +1,10 @@
 #Way to run background tasks to an out file when needed on linux
-nohup python3 -u manage.py process_tasks --queue crypto_product_refresh> product_refresh.out &
-nohup python3 -u manage.py process_tasks --queue promote_strategy> promote_strategy.out &
-nohup python3 -u manage.py process_tasks --queue execute_strategy> execute_strategy.out &
-nohup python3 -u manage.py process_tasks --queue check_orders> order_check.out &
-nohup python3 -u manage.py process_tasks --queue execution_count_and_fees> fees_check.out &
+#Start by triggering Virtual environment. "source venv/bin/activate"
+#then go to manage.py directory
+#then copy pasta these in
+
+nohup python3 -u manage.py process_tasks --queue crypto_product_refresh > product_refresh.out &
+nohup python3 -u manage.py process_tasks --queue promote_strategy > promote_strategy.out &
+nohup python3 -u manage.py process_tasks --queue execute_strategy > execute_strategy.out &
+nohup python3 -u manage.py process_tasks --queue check_orders > order_check.out &
+nohup python3 -u manage.py process_tasks --queue execution_count_and_fees > fees_check.out &
